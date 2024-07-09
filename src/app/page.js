@@ -1,7 +1,17 @@
+import HowItWorks from "@/components/home/HowItWork";
+import Newsletter from "@/components/home/NewsLetter";
+import PopularCategories from "@/components/home/Popularcategories";
+import Hero from "@/components/layout/Hero";
+import HomeMenu from "@/components/layout/HomeMenu";
+
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-2xl font-bold text-center my-10">Hello</h1>
-    </main>
+    <>
+      <Hero />
+      <HomeMenu />
+      <PopularCategories />
+      <HowItWorks />
+      <Newsletter />
+    </>
   );
 }
