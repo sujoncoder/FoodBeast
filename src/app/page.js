@@ -1,8 +1,8 @@
-import HowItWorks from "@/components/home/HowItWork";
-import Newsletter from "@/components/home/NewsLetter";
-import PopularCategories from "@/components/home/Popularcategories";
-import Hero from "@/components/layout/Hero";
-import HomeMenu from "@/components/layout/HomeMenu";
+import Hero from "../components/home/Hero.jsx";
+import HomeMenu from "../components/home/HomeMenu";
+import HowItWorks from "../components/home/HowItWork";
+import Newsletter from "../components/home/NewsLetter";
+import PopularCategories from "../components/home/Popularcategories";
 
 export default function Home() {
   return (

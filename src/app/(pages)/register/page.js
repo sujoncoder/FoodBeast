@@ -1,9 +1,35 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 const RegisterPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // HANDLE FORM LOGIN SUBMIT
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    console.log("hit the register btn");
+
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log("User registered successfully:", data);
+    } catch (error) {
+      console.error("There was a problem with the registration:", error);
+    }
+  };
+
+  // HANDLE WITH GOOGLE SIGNIN
   const handleGoogleSignIn = () => {};
 
   return (
@@ -13,7 +39,7 @@ const RegisterPage = () => {
           Register
         </h2>
 
-        <form>
+        <form onSubmit={handleRegisterSubmit}>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -23,7 +49,8 @@ const RegisterPage = () => {
             </label>
             <input
               type="email"
-              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
               placeholder="Enter your email"
             />
@@ -34,7 +61,8 @@ const RegisterPage = () => {
             </label>
             <input
               type="password"
-              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-indigo-500"
               placeholder="********"
             />
